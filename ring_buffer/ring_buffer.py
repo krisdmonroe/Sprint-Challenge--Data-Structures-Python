@@ -41,6 +41,7 @@ class RingBuffer:
         #         self.current = self.storage.head
         #     else:
         #         self.current = self.storage.head
+        # ---------------------------------------------
         # if self.storage.length < self.capacity:
         #     self.storage.add_to_tail(item)
         # else:
@@ -51,19 +52,19 @@ class RingBuffer:
         #     else:
         #         self.current = self.current.next
         #     self.current.value = item
-        if self.capacity < len(self.storage):
+        if self.storage.length < self.capacity:
             self.storage.add_to_end(item)
-            self.current = self.storage.head
         else:
-            if self.capacity == len(self.storage):
+            if self.current == None:
+                self.current = self.storage.head
+            elif self.storage.length == self.capacity:
                 self.storage.remove_from_head()
                 self.storage.add_to_end(item)
-                self.current = self.storage.head
             else:
-                self.current.value = item
-
-            
-            
+                node = self.storage.head 
+                node.get_next()
+            self.current.value = item
+        
     def get(self):
         buffer = []
         # makes a variable to make while loop go
@@ -71,7 +72,7 @@ class RingBuffer:
         # while something
         while node:
             # add into buffer the value of the node
-            buffer.append(node.value)
+            buffer.append(node.get_value())
             # continue the loop
-            node = node.next
+            node = node.get_next()
         return buffer

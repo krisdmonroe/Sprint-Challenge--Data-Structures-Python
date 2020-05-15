@@ -19,10 +19,11 @@ class LinkedList:
     def __init__(self):
         # first node in the list 
         self.head = None
-
+        self.length = 0
     def add_to_end(self, value):
         # regardless of if the list is empty or not, we need to wrap the value in a Node 
         new_node = Node(value)
+        self.length += 1
         # what if the list is empty? 
         if not self.head:
             self.head = new_node
@@ -38,6 +39,7 @@ class LinkedList:
             current.set_next(new_node)
 
     def remove_from_head(self):
+        self.length -= 1
         # what if the list is empty?
         if not self.head:
             return None
@@ -53,6 +55,7 @@ class LinkedList:
   # i want to do the exact opposite order of remove from head
     def remove_at_end(self):
         # what if the list is empty?
+        self.length -= 1
         if not self.head:
             return None
         # what if it isn't empty?
