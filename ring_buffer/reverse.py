@@ -38,6 +38,23 @@ class LinkedList:
 
         return False
 
+    def add_to_end(self, value):
+        # regardless of if the list is empty or not, we need to wrap the value in a Node 
+        new_node = Node(value)
+        # what if the list is empty? 
+        if not self.head:
+            self.head = new_node
+        # what if the list isn't empty?
+        else:
+            # what node do we want to add the new node to? 
+            # the last node in the list 
+            # we can get to the last node in the list by traversing it 
+            current = self.head 
+            while current.get_next() is not None:
+                current = current.get_next()
+            # we're at the end of the linked list 
+            current.set_next(new_node)
+            
     def reverse_list(self, node, prev):
         if self.head is None:
             return None
@@ -48,3 +65,4 @@ class LinkedList:
             self.head = node
         
         node.set_next(prev)
+
